@@ -38,13 +38,6 @@ public class LibraryEventsController {
     @PutMapping("/v1/libraryevent")
     public ResponseEntity<?> putLibraryEvent(@RequestBody @Valid LibraryEvent libraryEvent) throws JsonProcessingException, ExecutionException, InterruptedException {
 
-
-        if(libraryEvent.getLibraryEventId()==null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please pass the LibraryEventId");
-        }
-
-        libraryEvent.setLibraryEventType(LibraryEventType.UPDATE);
-        libraryEventProducer.sendLibraryEvent_Approach2(libraryEvent);
         return ResponseEntity.status(HttpStatus.OK).body(libraryEvent);
     }
 }
