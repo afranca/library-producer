@@ -6,10 +6,7 @@ import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -87,31 +84,12 @@ public class LibraryEventsControllerIntegrationTest {
     @Timeout(5)
     void putLibraryEvent() throws InterruptedException {
         //given
-        Book book = Book.builder()
-                .bookId(456)
-                .bookAuthor("Dilip")
-                .bookName("Kafka using Spring Boot")
-                .build();
 
-        LibraryEvent libraryEvent = LibraryEvent.builder()
-                .libraryEventId(123)
-                .book(book)
-                .build();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("content-type", MediaType.APPLICATION_JSON.toString());
-        HttpEntity<LibraryEvent> request = new HttpEntity<>(libraryEvent, headers);
 
         //when
-        ResponseEntity<LibraryEvent> responseEntity = restTemplate.exchange("/v1/libraryevent", HttpMethod.PUT, request, LibraryEvent.class);
 
         //then
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-
-        ConsumerRecord<Integer, String> consumerRecord = KafkaTestUtils.getSingleRecord(consumer, "library-events");
-        //Thread.sleep(3000);
-        String expectedRecord = "{\"libraryEventId\":123,\"libraryEventType\":\"UPDATE\",\"book\":{\"bookId\":456,\"bookName\":\"Kafka using Spring Boot\",\"bookAuthor\":\"Dilip\"}}";
-        String value = consumerRecord.value();
-        assertEquals(expectedRecord, value);
+        Assertions.assertTrue(false);
 
     }
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learnkafka.domain.Book;
 import com.learnkafka.domain.LibraryEvent;
 import com.learnkafka.producer.LibraryEventProducer;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -36,106 +37,27 @@ public class LibraryEventControllerUnitTest {
 
     @Test
     void postLibraryEvent() throws Exception {
-        //given
-        Book book = Book.builder()
-                .bookId(123)
-                .bookAuthor("Dilip")
-                .bookName("Kafka using Spring Boot")
-                .build();
-
-        LibraryEvent libraryEvent = LibraryEvent.builder()
-                .libraryEventId(null)
-                .book(book)
-                .build();
-
-        String json = objectMapper.writeValueAsString(libraryEvent);
-        when(libraryEventProducer.sendLibraryEvent_Approach2(isA(LibraryEvent.class))).thenReturn(null);
-
-        //expect
-        mockMvc.perform(post("/v1/libraryevent")
-        .content(json)
-        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated());
+        Assertions.assertTrue(false);
 
     }
 
     @Test
     void postLibraryEvent_4xx() throws Exception {
         //given
-
-        Book book = Book.builder()
-                .bookId(null)
-                .bookAuthor(null)
-                .bookName("Kafka using Spring Boot")
-                .build();
-
-        LibraryEvent libraryEvent = LibraryEvent.builder()
-                .libraryEventId(null)
-                .book(book)
-                .build();
-
-        String json = objectMapper.writeValueAsString(libraryEvent);
-        when(libraryEventProducer.sendLibraryEvent_Approach2(isA(LibraryEvent.class))).thenReturn(null);
-        //expect
-        String expectedErrorMessage = "book.bookAuthor - must not be blank, book.bookId - must not be null";
-        mockMvc.perform(post("/v1/libraryevent")
-                .content(json)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is4xxClientError())
-        .andExpect(content().string(expectedErrorMessage));
+        Assertions.assertTrue(false);
 
     }
 
     @Test
     void updateLibraryEvent() throws Exception {
 
-        //given
-        Book book = new Book().builder()
-                .bookId(123)
-                .bookAuthor("Dilip")
-                .bookName("Kafka Using Spring Boot")
-                .build();
-
-        LibraryEvent libraryEvent = LibraryEvent.builder()
-                .libraryEventId(123)
-                .book(book)
-                .build();
-        String json = objectMapper.writeValueAsString(libraryEvent);
-        when(libraryEventProducer.sendLibraryEvent_Approach2(isA(LibraryEvent.class))).thenReturn(null);
-
-        //expect
-        mockMvc.perform(
-                put("/v1/libraryevent")
-                        .content(json)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+        Assertions.assertTrue(false);
 
     }
 
     @Test
     void updateLibraryEvent_withNullLibraryEventId() throws Exception {
 
-        //given
-        Book book = new Book().builder()
-                .bookId(123)
-                .bookAuthor("Dilip")
-                .bookName("Kafka Using Spring Boot")
-                .build();
-
-        LibraryEvent libraryEvent = LibraryEvent.builder()
-                .libraryEventId(null)
-                .book(book)
-                .build();
-        String json = objectMapper.writeValueAsString(libraryEvent);
-        when(libraryEventProducer.sendLibraryEvent_Approach2(isA(LibraryEvent.class))).thenReturn(null);
-
-        //expect
-        mockMvc.perform(
-                put("/v1/libraryevent")
-                        .content(json)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is4xxClientError())
-        .andExpect(content().string("Please pass the LibraryEventId"));
-
+        Assertions.assertTrue(false);
     }
 }
