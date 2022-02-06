@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local
+    active: nonprod
 ---
 spring:
   config:
@@ -33,10 +33,10 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       ssl:
-        trust-store-location: file:/Dilip/udemy/kafka-for-developers-using-spring-boot/ssl/client.truststore.jks
-        trust-store-password: password
-        key-store-location: file:/Dilip/udemy/kafka-for-developers-using-spring-boot/ssl/client.keystore.jks
-        key-store-password: password
+        trust-store-location: file:/Users/Alexandre.Franca/workspace/intellij/keystore/client.truststore.jks
+        trust-store-password: integra
+        key-store-location: file:/Users/Alexandre.Franca/workspace/intellij/keystore/client.keystore.jks
+        key-store-password: integra
       properties:
         acks: all
         retries: 10
