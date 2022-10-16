@@ -30,7 +30,7 @@ spring:
     template:
       default-topic: library-events
     producer:
-      bootstrap-servers: localhost:9093,localhost:9094
+      bootstrap-servers: kafka1:9092, kafka2:9092
       key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
@@ -39,7 +39,7 @@ spring:
         retry.backoff.ms: 1000
     admin:
       properties:
-        bootstrap.servers: localhost:9093,localhost:9094
+        bootstrap.servers: kafka1:9092, kafka2:9092
 ---
 spring:
   config:
